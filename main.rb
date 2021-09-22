@@ -18,6 +18,11 @@ def d(input)
   BigDecimal(input.to_s)
 end
 
+def improved_gets
+  input = gets.chomp
+  input.gsub(',', '.')
+end
+
 def final_calc(recurrence, args = {})
   return final_calc_mensal(**args) if mensal?(recurrence)
 
@@ -45,22 +50,22 @@ end
 
 def valor_inicial
   puts 'Digite o valor inicial: '
-  d(gets.chomp)
+  d(improved_gets)
 end
 
 def quantidade_de_anos
   puts 'Digite a quantidade de anos: '
-  gets.chomp.to_i
+  improved_gets.to_i
 end
 
 def aporte_mensal
   puts 'Digite o valor aplicado mensalmente: '
-  d(gets.chomp)
+  d(improved_gets)
 end
 
 def percentual_anual
   puts 'Digite o percentual de ganho anual: '
-  d(gets.chomp)
+  d(improved_gets)
 end
 
 def final_message(input)
