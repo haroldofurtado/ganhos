@@ -8,6 +8,8 @@ gemfile do
   gem 'pry'
 end
 
+REGEX = /\A[+-]?\d+(\.\d+)?\z/
+
 Percent = ->(x) { x / d(100) }
 
 AnualMensal = lambda { |taxa_anual|
@@ -20,7 +22,11 @@ end
 
 def improved_gets
   input = gets.chomp
-  input.gsub(',', '.')
+  fix_input = input.gsub(',', '.')
+  return fix_input unless REGEX.match(fix_input).nil?
+
+  puts 'Valor informado inválido! Tente novamente: '
+  improved_gets
 end
 
 def final_calc(recurrence, args = {})
